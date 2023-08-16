@@ -2,10 +2,14 @@
 
 $list_to_sort: john anna zoe kim felicia carrie;
 
-$sorted_list: sort($list_to_sort);
-
-@each $item in $sorted_list {
-  .#{$item} {
-    content: "#{$item}";
+@function custom-sort($list) {
+  $sorted-list: ();
+  @each $item in $list {
+    $sorted-list: append($sorted-list, $item);
   }
+  @return sort($sorted-list);
 }
+
+$list_sorted: custom-sort($list_to_sort);
+
+@debug $list_sorted;
