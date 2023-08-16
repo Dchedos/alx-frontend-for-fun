@@ -2,15 +2,22 @@
 
 $list_to_sort: john anna zoe kim felicia carrie;
 
-@function custom-sort($list) {
+@function sort-list($list) {
   $sorted-list: ();
-  @each $item in $list {
-    $sorted-list: append($sorted-list, $item);
+  @while length($list) > 0 {
+    $next-item: null;
+    @each $item in $list {
+      @if $next-item == null or $item < $next-item {
+        $next-item: $item;
+      }
+    }
+    $sorted-list: append($sorted-list, $next-item);
+    $list: filter($list, $item: $next-item, $index: null, $list: ());
   }
-  @return sort($sorted-list);
+  @return $sorted-list;
 }
 
-$sorted_list: custom-sort($list_to_sort);
+$sorted_list: sort-list($list_to_sort);
 
 @each $item in $sorted_list {
   @debug $item;
