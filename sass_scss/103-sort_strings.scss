@@ -10,6 +10,8 @@ $list_to_sort: john anna zoe kim felicia carrie;
   @return sort($sorted-list);
 }
 
-$list_sorted: custom-sort($list_to_sort);
+$sorted_list: custom-sort($list_to_sort);
 
-@debug $list_sorted;
+@each $item in $sorted_list {
+  @debug $item;
+}
