@@ -1,24 +1,5 @@
 /* Sorts the variable $list_to_sort and prints the sorted list in the debug output */
 
-$list_to_sort: john anna zoe kim felicia carrie;
+@import '103-sort_list';
 
-@function sort-list($list) {
-  $sorted-list: ();
-  @while length($list) > 0 {
-    $next-item: null;
-    @each $item in $list {
-      @if $next-item == null or $item < $next-item {
-        $next-item: $item;
-      }
-    }
-    $sorted-list: append($sorted-list, $next-item);
-    $list: filter($list, $item: $next-item, $index: null, $list: ());
-  }
-  @return $sorted-list;
-}
-
-$sorted_list: sort-list($list_to_sort);
-
-@each $item in $sorted_list {
-  @debug $item;
-}
+@debug $list_to_sort;
